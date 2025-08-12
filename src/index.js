@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const nunjucks = require('nunjucks');
-const bodyParser = require('body-parser');
 const { sequelize, Category, Transaction } = require('./models');
 const { Op } = require('sequelize');
 const app = express();
@@ -19,7 +18,8 @@ app.use((req, res, next) => {
   res.locals.path = req.path; // available in all Nunjucks templates
   next();
 });
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Dashboard
