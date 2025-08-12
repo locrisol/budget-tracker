@@ -1,0 +1,443 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+<< /Length 4484 >>
+stream
+BT
+/F1 12 Tf
+1 0 0 1 50 730 Tm
+(Personal Budget Tracker Project Report) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Introduction and Research) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(The Personal Budget Tracker emerged from research into the financial challenges faced by) Tj
+0 -14 Td
+(individuals who juggle multiple income sources and recurring expenses without a reliable) Tj
+0 -14 Td
+(way to monitor them. Informal surveys among peers and review of academic literature on) Tj
+0 -14 Td
+(financial literacy revealed that many people rely on ad‑hoc spreadsheets or simple) Tj
+0 -14 Td
+(notebook entries. While those methods provide a rudimentary overview, they fall short when) Tj
+0 -14 Td
+(categorizing transactions, generating summaries, or visualizing trends. Contemporary) Tj
+0 -14 Td
+(budgeting applications such as Mint, YNAB, and PocketGuard offer powerful functionality,) Tj
+0 -14 Td
+(yet they often require connecting to bank accounts, introduce recurring subscription) Tj
+0 -14 Td
+(costs, or present overwhelming interfaces for newcomers. The research phase therefore) Tj
+0 -14 Td
+(focused on bridging the gap between complex professional tools and minimal personal) Tj
+0 -14 Td
+(tracking methods. The goal was to design a lightweight, privacy‑respecting, and) Tj
+0 -14 Td
+(self‑hosted solution using open source technologies.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Throughout the research, emphasis was placed on accessibility and data ownership. By) Tj
+0 -14 Td
+(relying on local storage via SQLite and providing a simple Express.js server, the project) Tj
+0 -14 Td
+(ensures that users retain control over their financial records. Academic articles on) Tj
+0 -14 Td
+(personal finance management recommended clear categorization, regular review, and visual) Tj
+0 -14 Td
+(feedback as best practices for budgeting. These principles directly influenced the) Tj
+0 -14 Td
+(application's features. Moreover, the project studied usability heuristics to keep the) Tj
+0 -14 Td
+(interface approachable. Components like navigation layout, table listings, and form) Tj
+0 -14 Td
+(validation were inspired by common design patterns observed in well‑reviewed budgeting) Tj
+0 -14 Td
+(tools. This early research phase set a foundation for balancing functionality with) Tj
+0 -14 Td
+(simplicity, establishing the direction for subsequent development efforts.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Objectives) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(The project pursued several key objectives. First, it aimed to provide a straightforward) Tj
+0 -14 Td
+(interface where users can log income and expenses without the friction of creating) Tj
+0 -14 Td
+(accounts or connecting external services. Second, it sought to categorize each) Tj
+0 -14 Td
+(transaction, enabling meaningful aggregation and comparisons across types of spending.) Tj
+0 -14 Td
+(Third, the tracker endeavored to compute and present real‑time summaries such as total) Tj
+0 -14 Td
+(income, total expenses, and the resulting net balance. A final objective was to) Tj
+0 -14 Td
+(incorporate visualizations that transform raw numbers into intuitive graphics, thereby) Tj
+0 -14 Td
+(reinforcing spending awareness.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Another vital objective centered on maintainability and extensibility. The codebase was) Tj
+0 -14 Td
+(structured so that future developers—or the original author at a later time—could easily) Tj
+0 -14 Td
+(add authentication, import/export features, or more advanced analytics. The use of popular) Tj
+0 -14 Td
+(libraries like Sequelize for database interactions and Nunjucks for templating reflects) Tj
+0 -14 Td
+(this forward‑looking mindset. The objectives also included adherence to security best) Tj
+0 -14 Td
+(practices, such as employing Helmet for HTTP headers and Morgan for detailed request) Tj
+0 -14 Td
+(logging. By meeting these objectives, the project would offer a reliable foundation for) Tj
+0 -14 Td
+(personal financial management while remaining accessible to learners who wish to explore) Tj
+0 -14 Td
+(full‑stack JavaScript development.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Development Process) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Development began by scaffolding an Express application and integrating Nunjucks to render) Tj
+0 -14 Td
+(server‑side templates. Early commits focused on establishing a cohesive layout using) Tj
+0 -14 Td
+(Bootswatch's Lux theme, which provides a clean aesthetic suitable for a finance) Tj
+0 -14 Td
+(application. The navigation bar was designed to surface the dashboard, transaction list,) Tj
+0 -14 Td
+ET
+endstream
+<< /Type /Page /Parent 0 0 R /MediaBox [0 0 612 792] /Contents 2 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+<< /Length 4538 >>
+stream
+BT
+/F1 12 Tf
+1 0 0 1 50 730 Tm
+(transaction form, and category management pages. Once the skeleton of the interface was) Tj
+0 -14 Td
+(complete, effort shifted to defining the data model.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Sequelize and SQLite were chosen for their minimal configuration overhead. Two primary) Tj
+0 -14 Td
+(models—`Category` and `Transaction`—capture the core data entities. Each transaction) Tj
+0 -14 Td
+(stores an amount, date, description, type \(income or expense\), and associated category.) Tj
+0 -14 Td
+(Relationships were defined so that categories have many transactions, and each transaction) Tj
+0 -14 Td
+(belongs to a single category. After initializing the database schema, the project) Tj
+0 -14 Td
+(implemented CRUD routes for transactions and categories. Routes handle operations such as) Tj
+0 -14 Td
+(listing transactions with optional filters, rendering forms for creation or editing, and) Tj
+0 -14 Td
+(performing deletion. Client input is validated at the model level by specifying non‑null) Tj
+0 -14 Td
+(constraints and enumeration of the transaction type.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(With data persistence in place, development progressed to computing aggregate summaries) Tj
+0 -14 Td
+(for the dashboard. The application calculates total income and total expenses using) Tj
+0 -14 Td
+(Sequelize's `sum` function and presents recent transactions in a concise table. A summary) Tj
+0 -14 Td
+(API endpoint provides grouped totals by category, returning JSON data consumed by a) Tj
+0 -14 Td
+(Chart.js visualization. During development, nodemon facilitated rapid feedback,) Tj
+0 -14 Td
+(automatically restarting the server after changes. Middleware like body‑parser, Morgan,) Tj
+0 -14 Td
+(and Helmet ensured robust request handling, logging, and basic security hardening. Each) Tj
+0 -14 Td
+(feature was iteratively tested through the browser interface, validating data retrieval,) Tj
+0 -14 Td
+(input handling, and user feedback messages.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Technologies Used) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(The project leverages a modern JavaScript stack tailored for simplicity and educational) Tj
+0 -14 Td
+(value. Node.js serves as the runtime environment, enabling the use of JavaScript on the) Tj
+0 -14 Td
+(server. Express.js provides a minimal yet powerful framework for routing and middleware,) Tj
+0 -14 Td
+(forming the backbone of HTTP request handling. To render dynamic HTML views, the) Tj
+0 -14 Td
+(application uses Nunjucks, a logic‑enabled templating engine that keeps presentation logic) Tj
+0 -14 Td
+(tidy while supporting template inheritance through files such as `layout.njk` and) Tj
+0 -14 Td
+(`dashboard.njk`.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(For persistence, the tracker employs SQLite via Sequelize, an Object‑Relational Mapping) Tj
+0 -14 Td
+(\(ORM\) library that abstracts raw SQL queries into model methods. SQLite's file‑based) Tj
+0 -14 Td
+(database suits small‑scale personal applications and requires little configuration.) Tj
+0 -14 Td
+(Chart.js powers client‑side visualization, turning API responses into bar charts that) Tj
+0 -14 Td
+(display spending by category. On the styling front, Bootswatch's Lux theme customizes) Tj
+0 -14 Td
+(Bootstrap 5, delivering responsive components with minimal effort. Additional dependencies) Tj
+0 -14 Td
+(include Helmet for security headers, Morgan for logging, body‑parser for form submissions,) Tj
+0 -14 Td
+(and dotenv to manage configuration through environment variables.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(The development environment uses Nodemon and Cross‑Env to streamline testing across) Tj
+0 -14 Td
+(platforms. Sequelize CLI scripts support migrations, although the current project) Tj
+0 -14 Td
+(primarily relies on `sequelize.sync\(\)` during bootstrap. Together, these technologies) Tj
+0 -14 Td
+(strike a balance between usability and extensibility. They are widely documented, open) Tj
+0 -14 Td
+(source, and familiar to many web developers, making the project accessible and easy to) Tj
+0 -14 Td
+(hand off for future enhancements.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Advantages and Disadvantages) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(A primary advantage of the Personal Budget Tracker is its privacy‑first design. All) Tj
+0 -14 Td
+(financial data remains on the user's machine, removing concerns about third‑party data) Tj
+0 -14 Td
+(collection or breaches. The project's modest footprint also means it can run on) Tj
+0 -14 Td
+(low‑resource hardware such as single‑board computers or old laptops. Another benefit lies) Tj
+0 -14 Td
+ET
+endstream
+<< /Type /Page /Parent 0 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+<< /Length 4452 >>
+stream
+BT
+/F1 12 Tf
+1 0 0 1 50 730 Tm
+(in the transparent codebase: developers or curious users can audit the application, modify) Tj
+0 -14 Td
+(components, or extend functionality without navigating proprietary systems. Furthermore,) Tj
+0 -14 Td
+(leveraging standard tools like Express and SQLite ensures long‑term maintainability and a) Tj
+0 -14 Td
+(shallow learning curve.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(However, the project has notable trade‑offs. The absence of multi‑user support and) Tj
+0 -14 Td
+(authentication restricts its use to local environments or trusted networks. Without) Tj
+0 -14 Td
+(integration to banks or financial APIs, users must manually input every transaction, which) Tj
+0 -14 Td
+(can be time‑consuming. While SQLite is convenient, it may not scale for heavier workloads) Tj
+0 -14 Td
+(or concurrent access. The visualization components rely on client‑side rendering, which,) Tj
+0 -14 Td
+(although sufficient for modest datasets, may become unwieldy as the transaction count) Tj
+0 -14 Td
+(grows. Additionally, the current implementation lacks automated tests; reliability depends) Tj
+0 -14 Td
+(on manual verification, which could hinder collaborative development or deployment in) Tj
+0 -14 Td
+(production environments.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Project Milestones) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(The project evolved through several milestones. Milestone 1 established the basic Express) Tj
+0 -14 Td
+(application with Nunjucks templates and a navigation layout. This phase ensured that the) Tj
+0 -14 Td
+(core pages rendered correctly and that the application structure allowed for future) Tj
+0 -14 Td
+(expansion. Milestone 2 introduced data persistence with Sequelize models for categories) Tj
+0 -14 Td
+(and transactions, enabling CRUD operations. Once users could create and manage entries,) Tj
+0 -14 Td
+(Milestone 3 focused on building the dashboard: calculating aggregate sums, listing recent) Tj
+0 -14 Td
+(transactions, and presenting a net balance.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Milestone 4 delivered filtering and search capabilities for the transaction list. Users) Tj
+0 -14 Td
+(can specify transaction type, category, and date ranges to narrow results. This feature) Tj
+0 -14 Td
+(required constructing dynamic Sequelize `where` clauses based on query parameters.) Tj
+0 -14 Td
+(Milestone 5 implemented the API endpoint `/api/summary/by-category`, allowing the) Tj
+0 -14 Td
+(front‑end to fetch summarized data for visualizations. The final milestone integrated) Tj
+0 -14 Td
+(Chart.js, turning the API data into an interactive chart displayed on the dashboard. Each) Tj
+0 -14 Td
+(milestone built upon the previous one, gradually transforming a static template into a) Tj
+0 -14 Td
+(functioning budgeting tool. Future milestones could include authentication, recurring) Tj
+0 -14 Td
+(transactions, data export, or integration with external financial APIs.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Individual Contributions) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(This project was conceived and developed as a solo initiative. The developer was) Tj
+0 -14 Td
+(responsible for end‑to‑end execution, encompassing research, design, coding, and testing.) Tj
+0 -14 Td
+(Tasks included defining the database schema, setting up the Express server, crafting) Tj
+0 -14 Td
+(Nunjucks views, and integrating Chart.js for visual feedback. The developer also) Tj
+0 -14 Td
+(configured middleware for security and logging, wrote seed scripts to populate sample) Tj
+0 -14 Td
+(data, and documented the project's setup through package scripts and environment) Tj
+0 -14 Td
+(variables.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Beyond coding, the developer conducted comparative research into existing budgeting tools,) Tj
+0 -14 Td
+(gathering insights on usability and feature sets. This research informed decisions such as) Tj
+0 -14 Td
+(emphasizing local storage over cloud syncing and prioritizing straightforward navigation.) Tj
+0 -14 Td
+(The solo nature of the project offered a comprehensive learning experience, reinforcing) Tj
+0 -14 Td
+(skills across front‑end templating, back‑end logic, and data modeling. Future) Tj
+0 -14 Td
+(contributions from collaborators could introduce automated testing, continuous integration) Tj
+0 -14 Td
+(pipelines, or new modules such as budgeting goals and alerts. Nonetheless, the current) Tj
+0 -14 Td
+(codebase reflects the cohesive vision and effort of a single contributor.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Video Walkthrough) Tj
+0 -14 Td
+ET
+endstream
+<< /Type /Page /Parent 0 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+<< /Length 1853 >>
+stream
+BT
+/F1 12 Tf
+1 0 0 1 50 730 Tm
+() Tj
+0 -14 Td
+(A video walkthrough demonstrating navigation, design decisions, data retrieval and) Tj
+0 -14 Td
+(validation, and dashboard visualizations is intended to accompany this report. Due to) Tj
+0 -14 Td
+(current environment limitations, the recording and hosting of the video cannot be) Tj
+0 -14 Td
+(completed within this workspace. A placeholder link is provided below and should be) Tj
+0 -14 Td
+(replaced with the actual video URL once the recording is available and sharing permissions) Tj
+0 -14 Td
+(are confirmed.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Video Walkthrough: [https://example.com/budget-tracker-video]\(https://example.com/budget-) Tj
+0 -14 Td
+(tracker-video\)) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(Conclusion) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+(The Personal Budget Tracker showcases how a focused set of technologies can deliver a) Tj
+0 -14 Td
+(practical solution for managing everyday finances. Through Express, Sequelize, Nunjucks,) Tj
+0 -14 Td
+(and Chart.js, the application supports essential budgeting tasks while remaining) Tj
+0 -14 Td
+(accessible and transparent. The research and design stages prioritized user autonomy and) Tj
+0 -14 Td
+(simplicity, resulting in an interface that encourages regular engagement without) Tj
+0 -14 Td
+(overwhelming the user. Although the project has limitations—such as manual data entry and) Tj
+0 -14 Td
+(the absence of automated tests—it provides a solid foundation for further exploration.) Tj
+0 -14 Td
+(Future enhancements could incorporate authentication, cloud synchronization, or richer) Tj
+0 -14 Td
+(analytics. As an educational project, it demonstrates the end‑to‑end process of building a) Tj
+0 -14 Td
+(full‑stack JavaScript application and serves as a springboard for both learning and) Tj
+0 -14 Td
+(personal financial management.) Tj
+0 -14 Td
+() Tj
+0 -14 Td
+ET
+endstream
+<< /Type /Page /Parent 0 0 R /MediaBox [0 0 612 792] /Contents 8 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+<< /Type /Pages /Kids [ 3 0 R 5 0 R 7 0 R 9 0 R ] /Count 4 >>
+endobj
+<< /Type /Catalog /Pages 10 0 R >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000000 00000 n 
+0000000070 00000 n 
+0000004571 00000 n 
+0000004689 00000 n 
+0000009234 00000 n 
+0000009352 00000 n 
+0000013821 00000 n 
+0000013939 00000 n 
+0000015819 00000 n 
+0000015937 00000 n 
+0000016006 00000 n 
+trailer
+<< /Size 12 /Root 11 0 R >>
+startxref
+16057
+%%EOF
