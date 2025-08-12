@@ -5,13 +5,13 @@
 
   <form method="GET" style="margin-bottom:1rem;">
     <label>Type</label>
-    <select name="type" class="form-select">
+    <select name="type" class="form-select" style="border: 1px solid #ced4da;">
       <option value="">All</option>
       <option value="income" {% if filters.type == 'income' %}selected{% endif %}>Income</option>
       <option value="expense" {% if filters.type == 'expense' %}selected{% endif %}>Expense</option>
     </select>
     <label>Category</label>
-    <select name="category" class="form-select">
+    <select name="category" class="form-select" style="border: 1px solid #ced4da;">
       <option value="">All</option>
       {% for c in categories %}
         <option value="{{ c.id }}" {% if filters.category == c.id %}selected{% endif %}>{{ c.name }}</option>
