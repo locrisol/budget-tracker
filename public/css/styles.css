@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+nav a {
+    margin-right: 1rem;
+}
+
+.card {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.flex {
+    display: flex;
+    gap: 1rem;
+}
+
+.badge {
+    background: #eee;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background: #f5f5f5;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
+
+.btn {
+    padding: 6px 12px;
+    border: none;
+    background: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-small {
+    font-size: 0.8em;
+    padding: 4px 8px;
+}
+
+form input,
+form select,
+form textarea {
+    padding: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+}
+
+.navbar .nav-link {
+    transition: color .15s, background-color .15s;
+    border-radius: .25rem;
+}
+
+.navbar .nav-link:hover {
+    color: #0d6efd;
+    background-color: rgba(13, 110, 253, .08);
+}
+
+.navbar .nav-link.active {
+    color: #fff;
+    background-color: #0d6efd;
+}

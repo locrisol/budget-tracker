@@ -1,0 +1,47 @@
+{% extends "layout.njk" %}
+{% block title %}Transactions{% endblock %}
+{% block content %}
+  <h1>Transactions</h1>
+
+  <form method="GET" style="margin-bottom:1rem;">
+    <label>Type</label>
+    <select name="type" class="form-select">
+      <option value="">All</option>
+      <option value="income" {% if filters.type == 'income' %}selected{% endif %}>Income</option>
+      <option value="expense" {% if filters.type == 'expense' %}selected{% endif %}>Expense</option>
+    </select>
+    <label>Category</label>
+    <select name="category" class="form-select">
+      <option value="">All</option>
+      {% for c in categories %}
+        <option value="{{ c.id }}" {% if filters.category == c.id %}selected{% endif %}>{{ c.name }}</option>
+      {% endfor %}
+    </select>
+    <button class="btn btn-primary" type="submit">Filter</button>
+  </form>
+
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Date</th><th>Type</th><th>Category</th><th>Amount</th><th>Description</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in transactions %}
+        <tr>
+          <td>{{ t.date }}</td>
+          <td>{{ t.type }}</td>
+          <td>{{ t.Category.name }}</td>
+          <td>{{ t.amount }}</td>
+          <td>{{ t.description }}</td>
+          <td class="d-flex justify-content-center align-items-center">
+            <a class="btn btn-sm btn-outline-primary me-2" href="/transactions/{{ t.id }}/edit" style="min-width: 75px;">Edit</a>
+            <form class="d-inline" action="/transactions/{{ t.id }}/delete" method="POST">
+              <button class="btn btn-sm btn-outline-danger" style="min-width: 75px;" type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
