@@ -2,9 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const nunjucks = require('nunjucks');
-const bodyParser = require('body-parser');
-const helmet = require('helmet');
-const morgan = require('morgan');
 const { sequelize, Category, Transaction } = require('./models');
 const { Op } = require('sequelize');
 const app = express();
@@ -17,27 +14,11 @@ nunjucks.configure(path.join(__dirname, 'views'), {
 });
 app.set('view engine', 'njk');
 
-// Middleware
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: [
-        "'self'",
-        'https://cdn.jsdelivr.net',
-        "'unsafe-inline'"
-      ],
-      styleSrc: ["'self'", "https://cdn.jsdelivr.net"]
-    }
-    }));
-app.use(morgan('dev'));
-
 app.use((req, res, next) => {
   res.locals.path = req.path; // available in all Nunjucks templates
   next();
 });
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Dashboard
