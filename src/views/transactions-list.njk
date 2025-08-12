@@ -30,7 +30,7 @@
       {% for t in transactions %}
         <tr>
           <td>{{ t.date }}</td>
-          <td>{{ t.type }}</td>
+          <td>{{ t.type | capitalize }}</td>
           <td>{{ t.Category.name }}</td>
           <td>{{ t.amount }}</td>
           <td>{{ t.description }}</td>
