@@ -7,9 +7,9 @@
       <h3 class="card-title">Add Category</h3>
       <form method="POST" action="/categories">
         <label>Name</label>
-        <input name="name" required class="form-control" />
+        <input name="name" required class="form-control" style="border: 1px solid #ced4da;" />
         <label>Type</label>
-        <select name="type" required class="form-select">
+        <select name="type" required class="form-select" style="border: 1px solid #ced4da;">
           <option value="expense">Expense</option>
           <option value="income">Income</option>
         </select>
@@ -21,16 +21,11 @@
   <div class="card">
     <div class="card-body">
       <h3 class="card-title">Existing</h3>
-      <table class="table table-striped">
-        <thead><tr><th>Name</th></tr></thead>
-        <tbody>
-          {% for c in categories %}
-            <tr>
-              <td>{{ c.name }}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <ul class="list-group">
+        {% for c in categories %}
+          <li class="list-group-item">{{ c.name }}</li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 {% endblock %}

@@ -4,26 +4,26 @@
   <h1>{{ title }}</h1>
   <form action="{{ action }}" method="POST">
     <label>Type</label>
-    <select name="type" class="form-select" required>
+    <select name="type" class="form-select" required style="border: 1px solid #ced4da;">
       <option value="expense" {% if transaction.type == 'expense' %}selected{% endif %}>Expense</option>
       <option value="income" {% if transaction.type == 'income' %}selected{% endif %}>Income</option>
     </select>
 
     <label>Amount (€)</label>
-    <input type="number" step="0.01" name="amount" value="{{ transaction.amount or '' }}" class="form-control" required />
+    <input type="number" step="0.01" name="amount" value="{{ transaction.amount or '' }}" class="form-control" required style="border: 1px solid #ced4da;" />
 
     <label>Date</label>
-    <input type="date" name="date" value="{{ transaction.date or '' }}" class="form-control" required />
+    <input type="date" name="date" value="{{ transaction.date or '' }}" class="form-control" required style="border: 1px solid #ced4da;" />
 
     <label>Category</label>
-    <select name="categoryId" class="form-select" required>
+    <select name="categoryId" class="form-select" required style="border: 1px solid #ced4da;">
       {% for c in categories %}
         <option value="{{ c.id }}" {% if transaction.categoryId == c.id %}selected{% endif %}>{{ c.name }}</option>
       {% endfor %}
     </select>
 
     <label>Description</label>
-    <textarea name="description" class="form-control">{{ transaction.description or '' }}</textarea>
+    <textarea name="description" class="form-control" style="border: 1px solid #ced4da;">{{ transaction.description or '' }}</textarea>
 
     <button class="btn btn-primary" type="submit">Save</button>
   </form>
