@@ -6,11 +6,10 @@ const { sequelize, Category, Transaction } = require('./models');
 const { Op } = require('sequelize');
 const app = express();
 
-// View setup
+// Initial setup for the views
 nunjucks.configure(path.join(__dirname, 'views'), {
   autoescape: true,
-  express: app,
-  watch: process.env.NODE_ENV === 'development',
+  express: app
 });
 app.set('view engine', 'njk');
 
@@ -22,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Dashboard
+// Dashboard rendering and routing
 app.get('/', async (req, res, next) => {
   try {
     const totalIncome = await Transaction.sum('amount', { where: { type: 'income' } }) || 0;
@@ -43,7 +42,7 @@ app.get('/', async (req, res, next) => {
   }
 });
 
-// Transactions list
+// Transactions list rendering and routing
 app.get('/transactions', async (req, res, next) => {
   try {
     const { type, category, from, to } = req.query;
@@ -67,7 +66,7 @@ app.get('/transactions', async (req, res, next) => {
   }
 });
 
-// New transaction form
+// New transaction form rendering and routing
 app.get('/transactions/new', async (req, res) => {
   const categories = await Category.findAll();
   res.render('transaction-form.njk', {
@@ -79,7 +78,7 @@ app.get('/transactions/new', async (req, res) => {
   });
 });
 
-// Edit transaction
+// Edit transaction rendering and routing
 app.get('/transactions/:id/edit', async (req, res, next) => {
   try {
     const transaction = await Transaction.findByPk(req.params.id);
@@ -97,7 +96,7 @@ app.get('/transactions/:id/edit', async (req, res, next) => {
   }
 });
 
-// Create transaction
+// Create transaction route
 app.post('/transactions', async (req, res, next) => {
   try {
     const { type, amount, date, description, categoryId } = req.body;
@@ -108,7 +107,7 @@ app.post('/transactions', async (req, res, next) => {
   }
 });
 
-// Update transaction
+// Update transaction route
 app.post('/transactions/:id', async (req, res, next) => {
   try {
     const transaction = await Transaction.findByPk(req.params.id);
@@ -121,7 +120,7 @@ app.post('/transactions/:id', async (req, res, next) => {
   }
 });
 
-// Delete transaction
+// Delete transaction route
 app.post('/transactions/:id/delete', async (req, res, next) => {
   try {
     const transaction = await Transaction.findByPk(req.params.id);
@@ -132,7 +131,7 @@ app.post('/transactions/:id/delete', async (req, res, next) => {
   }
 });
 
-// Categories list & create
+// Categories list render and route
 app.get('/categories', async (req, res, next) => {
   try {
     const categories = await Category.findAll();
@@ -141,6 +140,8 @@ app.get('/categories', async (req, res, next) => {
     next(err);
   }
 });
+
+// Categories creation route
 app.post('/categories', async (req, res, next) => {
   try {
     const { name } = req.body;
@@ -151,7 +152,7 @@ app.post('/categories', async (req, res, next) => {
   }
 });
 
-// API summary by category
+// API summary by category to display the chart
 app.get('/api/summary/by-category', async (req, res, next) => {
   try {
     const results = await Transaction.findAll({
@@ -169,13 +170,13 @@ app.get('/api/summary/by-category', async (req, res, next) => {
   }
 });
 
-// Error handler
+// Basic error handling
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).render('error.njk', { message: err.message });
 });
 
-// Bootstrap
+// Application start process listening on port 3000
 (async () => {
   await sequelize.sync();
   const port = process.env.PORT || 3000;
