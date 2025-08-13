@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Solo-built personal budget tracker using Express, Sequelize, Nunjucks, and SQLite.",
   "main": "src/index.js",
-  "author": "",
+  "author": "Leandro Crisol (23156503)",
   "license": "MIT",
   "scripts": {
     "start": "node src/index.js",
