@@ -144,3 +144,8 @@ http://localhost:3000
 - Performance tuning for large datasets (indexes, pagination)
 
 > This project is complete and not planned for further expansion.
+
+## License
+
+This project is released under the **MIT License**.  
+You are free to use, modify and distribute this software for personal and commercial purposes, provided that the original license notice is included.
